@@ -615,6 +615,10 @@ def serve_file(filepath):
         print(f"Error serving file: {str(e)}")
         return f"Error serving file: {str(e)}", 500
 
+@app.route('/health')
+def healthcheck():
+    """Healthcheck endpoint for Docker"""
+    return jsonify({"status": "healthy"}), 200
 
 @app.route('/reset_course')
 def reset_course():

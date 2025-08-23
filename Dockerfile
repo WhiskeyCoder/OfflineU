@@ -18,5 +18,10 @@ COPY . .
 
 EXPOSE 5000
 
+# add healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:5000/health || exit 1
+
+
 # command to run on container start
 CMD [ "python", "/app/offlineu_core.py" ] 
